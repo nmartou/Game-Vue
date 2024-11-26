@@ -26,7 +26,7 @@ export default defineNuxtConfig({
   components: [
     {
       path: '~/components',
-      pathPrefix: false,
+      pathPrefix: true,
     },
   ],
   compatibilityDate: '2024-11-23',
