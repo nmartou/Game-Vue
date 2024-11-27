@@ -29,5 +29,6 @@ export default defineNuxtConfig({
       pathPrefix: true,
     },
   ],
+  css: ['~/assets/main.css'],
   compatibilityDate: '2024-11-23',
 })

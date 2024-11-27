@@ -1,36 +1,44 @@
 <template>
     <div class="header">
-        <a href="/">Home</a>
-        <a href="/test">Test</a>
+        <NuxtLink to="/">
+            Home
+        </NuxtLink>
+        <NuxtLink to="/game">
+            Game
+        </NuxtLink>
     </div>
 </template>
 
 <style scoped>
     a {
         text-decoration: none;
-        color: black;
+        color: white;
         font-size: 1.5em;
         font-family: Calibri;
-        border: solid black 2px;
         padding: 5px 10px 5px 10px;
         margin: 5px;
         border-radius: 10px;
+        text-align: center;
     }
 
     a:hover {
-        background-color: black;
-        color: white;
+        background-color: white;
+        color: black;
         transition: 0.3s;
     }
 
     div.header {
-        background-color: lightseagreen;
+        max-width: 500px;
+        background-color: #3b0000;
         text-align: center;
         margin-bottom: 10px;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
+        border-radius: 50px;
         width: auto;
         /* height: 50px; */
         padding: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+        
     }
 </style>
