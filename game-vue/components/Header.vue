@@ -6,6 +6,9 @@
         <NuxtLink to="/game">
             Game
         </NuxtLink>
+        <NuxtLink to="/shop">
+            Shop
+        </NuxtLink>
     </div>
 </template>
 

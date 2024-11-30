@@ -5,23 +5,11 @@ export default defineNuxtConfig({
       '/**': { isr: true }
     }
   },
-
   $development: {
     //
   },
-
-  $env: {
-    staging: {
-      // 
-    }
-  },
   runtimeConfig: {
-    // The private keys which are only available server-side
-    apiSecret: '123',
-    // Keys within public are also exposed client-side
-    public: {
-      apiBase: '/api'
-    }
+    MONGO_URI: process.env.MONGO_URI
   },
   components: [
     {
@@ -29,6 +17,9 @@ export default defineNuxtConfig({
       pathPrefix: true,
     },
   ],
+  nitro: {
+    plugins: ['~/server/db/index.ts']
+  },
   css: ['~/assets/main.css'],
   compatibilityDate: '2024-11-23',
-})
+});

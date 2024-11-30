@@ -2,33 +2,43 @@
     <div class="game">
         <h2>Total <span>{{ totalClick }}</span></h2>
         <span>Total auto clicker : {{ autoClicker }}</span><br>
+        <span>Price : {{ priceAutoClicker }} coins</span><br>
         <button @click="totalClick++">Add Soldier</button>
         <button @click="buyAuto()">Buy Auto Hire</button>
     </div>
 </template>
 
-<script setup>
-    const totalClick = ref(0);
-    const autoClicker = ref(0);
-    const priceAutoClicker = ref(5);
+<script setup lang="ts">
+    const totalClick = ref<number>(0);
+    const autoClicker = ref<number>(0);
+    const priceAutoClicker = ref<number>(5);
 
-    function buyAuto() {
-        if (totalClick >= priceAutoClicker) {
-            totalClick -= priceAutoClicker;
-            priceAutoClicker += 10;
+    let interval: string | number | NodeJS.Timeout | undefined;
+
+    const buyAuto = () => {
+        if (totalClick.value >= priceAutoClicker.value) {
+            totalClick.value -= priceAutoClicker.value;
+            priceAutoClicker.value += 10;
+            autoClicker.value++;
         }
     }
 
-    async function autoClick() {
-        while(true){
-            timer = setInterval(() => {
-                totalClick += autoClick;
-            }, 1000)
-        }
-    }
+    // function autoClick() {
+    //     while(true){
+    //         interval = setInterval(() => {
+    //             totalClick.value += autoClicker.value;
+    //         }, 1000)
+    //     }
+    // }
 
     onMounted(() => {
-        autoClick();
+        interval = window.setInterval(() => {
+            totalClick.value += autoClicker.value;
+        }, 1000)
+    })
+
+    onUnmounted(() => {
+        clearInterval(interval);
     })
 </script>
 
@@ -40,6 +50,8 @@
         max-width: 50%;
         text-align: center;
         background-color: white;
+        border-radius: 10px;
+        background-color: whitesmoke;
     }
 
     h2 {
@@ -55,5 +67,17 @@
         border-radius: 50px;
         border: none;
         margin: 10px;
+        background-color: black;
+        color: white;
+    }
+
+    div.game button:hover {
+        padding: 15px;
+        border-radius: 50px;
+        border: none;
+        margin: 10px;
+        background-color: green;
+        color: white;
+        transition: 0.3s;
     }
 </style>
