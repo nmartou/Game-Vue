@@ -1,21 +1,8 @@
-import { Schema, model } from "mongoose";
-
-const ProductSchema = new Schema({
-    // id: {
-    //     type: Number
-    // },
-    name: {
-        type: String
-    },
-    price: {
-        type: Number
-    }
-});
-
-export const Product =  model<JSON>('Product', ProductSchema);
-
+import { Product } from "~/server/api/product/product";
 export default defineEventHandler(async (event) => {
-    const products = await Product.find();
+    const products = await Product.find().catch((err) => {
+        console.log(err);
+    });
 
     return {
         products,

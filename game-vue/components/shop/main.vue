@@ -1,11 +1,33 @@
 <template>
     <div class="shop">
         <h1>Shop Page</h1>
+        <table class="">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-if="productStore.isLoading"><td>Loading...</td></tr>
+                <tr v-for="product in productStore.products" :key="product.id">
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.price }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </template>
 
 <script setup lang="ts">
-    // const itemList = ref({"object": })
+import { useProductStore } from "~/stores/product";
+const productStore = useProductStore();
+
+onMounted(() => {
+    productStore.fetchProducts();
+});
 </script>
 
 <style scoped>
