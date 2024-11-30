@@ -1,7 +1,8 @@
 <template>
     <div class="shop">
         <h1>Shop Page</h1>
-        <table class="">
+        <div v-if="productStore.isLoading">Loading...</div>
+        <table v-else class="">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -10,7 +11,6 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-if="productStore.isLoading"><td>Loading...</td></tr>
                 <tr v-for="product in productStore.products" :key="product.id">
                     <td>{{ product.id }}</td>
                     <td>{{ product.name }}</td>
