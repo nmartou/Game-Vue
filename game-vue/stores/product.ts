@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const useProductStore = defineStore('productStore', {
     state: () => ({
-        products: {} as Array<{id: number, name: string, price: number}>,
+        products: {} as Array<{_id: number, name: string, price: number}>,
         isLoading: false
     }),
     
@@ -11,7 +11,7 @@ export const useProductStore = defineStore('productStore', {
     getters: {
         totalProducts: (state) => state.products.length,
         getProductById: (state) => (_id: number) => 
-            state.products.find((product) => product.id === _id),
+            state.products.find((product) => product._id === _id),
     },
 
     actions: {
@@ -19,7 +19,7 @@ export const useProductStore = defineStore('productStore', {
             this.isLoading = true;
             axios.get('/api/product/')
                 .then((response) => {
-                    this.products = { ...response.data };
+                    this.products = response.data;
                 })
                 .catch((err) => {
                     console.log(err);
