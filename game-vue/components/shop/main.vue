@@ -42,7 +42,7 @@ onMounted(() => {
         max-width: 80%;
         text-align: center;
         background-color: white;
-        border-radius: 10px;
+        border-radius: 30px;
         background-color: whitesmoke;
     }
 

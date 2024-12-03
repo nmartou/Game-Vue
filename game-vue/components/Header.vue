@@ -35,7 +35,7 @@
         background-color: #3b0000;
         text-align: center;
         margin-bottom: 10px;
-        border-radius: 50px;
+        border-radius: 30px;
         width: auto;
         /* height: 50px; */
         padding: 20px;

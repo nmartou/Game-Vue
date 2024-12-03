@@ -1,5 +1,7 @@
 body {
     margin: 0px;
-    background: rgb(124,33,33);
-    background: radial-gradient(circle, rgb(197, 99, 99) 48%, rgba(16,4,152,1) 94%);
+    background-image: linear-gradient(to right, #2c3e50, #4ca1af);
+    background-repeat: repeat;
+    /* background: rgb(124,33,33); */
+    /* background: radial-gradient(circle, rgb(197, 99, 99) 48%, rgba(16,4,152,1) 94%); */
 }
