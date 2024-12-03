@@ -11,11 +11,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="product in productStore.products" :key="product._id">
-                    <td>{{ product._id }}</td>
-                    <td>{{ product.name }}</td>
-                    <td>{{ product.price }}</td>
-                </tr>
+                <template v-for="product in productStore.products" :key="product._id">
+                    <tr>
+                        <td>{{ product._id }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.price }}</td>
+                    </tr>
+                </template>
             </tbody>
         </table>
     </div>
@@ -27,6 +29,7 @@ const productStore = useProductStore();
 
 onMounted(() => {
     productStore.fetchProducts();
+    console.log(productStore.products)
 });
 </script>
 

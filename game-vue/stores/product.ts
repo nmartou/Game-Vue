@@ -19,7 +19,7 @@ export const useProductStore = defineStore('productStore', {
             this.isLoading = true;
             axios.get('/api/product/')
                 .then((response) => {
-                    this.products = response.data;
+                    this.products = response.data.products;
                 })
                 .catch((err) => {
                     console.log(err);
