@@ -29,7 +29,6 @@ const productStore = useProductStore();
 
 onMounted(() => {
     productStore.fetchProducts();
-    console.log(productStore.products)
 });
 </script>
 
