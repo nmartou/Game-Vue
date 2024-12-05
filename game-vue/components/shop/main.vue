@@ -1,25 +1,25 @@
 <template>
     <div class="shop">
         <h1>Shop Page</h1>
-        <div v-if="productStore.isLoading">Loading...</div>
-        <table v-else class="">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <template v-for="product in productStore.products" :key="product._id">
+        <div class="shop-vue">
+            <div v-if="productStore.isLoading">Loading...</div>
+            <div v-else class="products">
+                <!-- <thead>
                     <tr>
-                        <td>{{ product._id }}</td>
-                        <td>{{ product.name }}</td>
-                        <td>{{ product.price }}</td>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Price</th>
                     </tr>
+                </thead> -->
+                <template v-for="product in productStore.products" :key="product._id">
+                    <div class="product">
+                        <h3>{{ product.name }}</h3>
+                        <p>{{ product.price }}€</p>
+                        <button @click="buyProduct(product._id)">Buy</button>
+                    </div>
                 </template>
-            </tbody>
-        </table>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -30,6 +30,10 @@ const productStore = useProductStore();
 onMounted(() => {
     productStore.fetchProducts();
 });
+
+const buyProduct = (id: number) => {
+    productStore.buyProduct(id);
+};
 </script>
 
 <style scoped>
@@ -43,6 +47,22 @@ onMounted(() => {
         background-color: white;
         border-radius: 30px;
         background-color: whitesmoke;
+        padding: 20px;
+        /* text-align: center; */
+    }
+
+    div.shop-vue {
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+    }
+
+    div.product {
+        display: inline-block;
+        border: solid black 1px;
+        border-radius: 30px;
+        padding: 10px;
+        margin: 20px;
     }
 
     div.game button {

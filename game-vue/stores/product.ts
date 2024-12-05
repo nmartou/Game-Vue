@@ -27,6 +27,15 @@ export const useProductStore = defineStore('productStore', {
                 .finally (() => {
                     this.isLoading = false;
                 });
+        },
+        async buyProduct(id: number) {
+            axios.post('/api/product/')
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
         }
     }
 })
