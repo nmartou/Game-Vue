@@ -29,9 +29,18 @@ export const useProductStore = defineStore('productStore', {
                 });
         },
         async buyProduct(id: number) {
-            axios.post('/api/product/')
+            axios.post('/api/product/' + id)
                 .then((response) => {
-                    console.log(response);
+                    return response;
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        },
+        async deleteProduct(id: number) {
+            axios.delete('/api/product/' + id)
+                .then((response) => {
+                    return response;
                 })
                 .catch((err) => {
                     console.log(err);

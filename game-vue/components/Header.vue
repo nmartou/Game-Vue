@@ -9,6 +9,11 @@
         <NuxtLink to="/shop">
             Shop
         </NuxtLink>
+        <!-- <DevOnly> -->
+            <NuxtLink to="/darkSide">
+                Dark Side
+            </NuxtLink>
+        <!-- </DevOnly> -->
     </div>
 </template>
 
