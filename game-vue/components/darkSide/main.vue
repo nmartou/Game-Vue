@@ -2,7 +2,7 @@
     <div class="shop">
         <h1>Shop Page</h1>
         <div class="shop-vue">
-            <div v-if="productStore.isLoading">Loading...</div>
+            <div v-if="productStore.isLoading" class="products">Loading...</div>
             <div v-else class="products">
                 <table>
                     <thead>
@@ -42,6 +42,14 @@ const deleteData = (id: number) => {
 </script>
 
 <style scoped>
+    div.products {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        display: inline-block;
+        text-align: left;
+    }
+
     div.shop {
         border: solid black 2px;
         margin-left: auto;
@@ -59,7 +67,7 @@ const deleteData = (id: number) => {
     div.shop-vue {
         margin-left: auto;
         margin-right: auto;
-        width: 80%;
+        width: 100%;
     }
 
     div.product {
