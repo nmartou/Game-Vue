@@ -29,7 +29,7 @@ export const useProductStore = defineStore('productStore', {
                 });
         },
         async buyProduct(id: number) {
-            axios.post('/api/product/')
+            axios.put('/api/product/:id')
                 .then((response) => {
                     console.log(response);
                 })

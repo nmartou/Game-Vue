@@ -4,13 +4,6 @@
         <div class="shop-vue">
             <div v-if="productStore.isLoading">Loading...</div>
             <div v-else class="products">
-                <!-- <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                    </tr>
-                </thead> -->
                 <template v-for="product in productStore.products" :key="product._id">
                     <div class="product">
                         <h3>{{ product.name }}</h3>
