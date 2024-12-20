@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const useProductStore = defineStore('productStore', {
     state: () => ({
-        products: {} as Array<{_id: number, name: string, price: number}>,
+        products: {} as Array<{_id: number, name: string, price: number, path: string}>,
         isLoading: false
     }),
     
@@ -45,6 +45,15 @@ export const useProductStore = defineStore('productStore', {
                 .catch((err) => {
                     console.log(err);
                 });
+        },
+        async modifyProduct(id: number, data: {name: string, price: number, path: string}) {
+            axios.put('/api/product/' + id, {
+                ...data
+                }).then((response) => {
+                    return response;
+                }).catch((err) => {
+                    console.log(err);
+            });
         }
     }
 })

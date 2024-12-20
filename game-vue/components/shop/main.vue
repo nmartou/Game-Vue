@@ -6,6 +6,7 @@
             <div v-else class="products">
                 <template v-for="product in productStore.products" :key="product._id">
                     <div class="product">
+                        <img :src="'/img/' + product.path" width="200px" />
                         <h3>{{ product.name }}</h3>
                         <p>{{ product.price }}€</p>
                         <button @click="buyProduct(product._id)">Buy</button>
@@ -53,28 +54,30 @@ const buyProduct = (id: number) => {
 
     div.product {
         display: inline-block;
-        border: solid black 1px;
+        /* border: solid black 1px; */
         border-radius: 30px;
         padding: 10px;
         margin: 20px;
     }
 
-    div.game button {
+    div.product button {
         padding: 15px;
         border-radius: 50px;
         border: none;
         margin: 10px;
         background-color: black;
         color: white;
+        width: 100px;
     }
 
-    div.game button:hover {
+    div.product button:hover {
         padding: 15px;
         border-radius: 50px;
         border: none;
         margin: 10px;
-        background-color: green;
-        color: white;
+        background-color: White;
+        color: black;
         transition: 0.3s;
+        border: 2px solid black;
     }
 </style>

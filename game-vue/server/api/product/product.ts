@@ -8,6 +8,10 @@ const ProductSchema = new Schema({
     price: {
         type: Number,
         require: true,
+    },
+    path: {
+        type: String,
+        require: true,
     }
 });
 
