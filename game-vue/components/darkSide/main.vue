@@ -45,7 +45,7 @@
                     </div>
                     <button class="submit" type="submit" @click="closeModal()">Modify</button>
                 </form>
-                <button>X</button>
+                <button class="close-modal" @click="closeModal()">X</button>
             </div>
         </div>
             </div>
@@ -85,7 +85,7 @@ const submitForm = () => {
 }
 
 const closeModal = () => {
-    showModal.value = false;
+    showModal.value = !showModal.value;
 }
 </script>
 
@@ -143,6 +143,11 @@ div.products button.modify {
 div.products button.submit {
     background-color: black;
     color: white;
+}
+
+div.products button.close-modal {
+    background-color: lightgray;
+    color: black;
 }
 
 div.products button:hover {
