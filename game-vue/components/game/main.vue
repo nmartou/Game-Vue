@@ -9,37 +9,31 @@
 </template>
 
 <script setup lang="ts">
-    const totalClick = ref<number>(0);
-    const autoClicker = ref<number>(0);
-    const priceAutoClicker = ref<number>(5);
 
-    let interval: string | number | NodeJS.Timeout | undefined;
+const totalClick = ref<number>(0);
+const autoClicker = ref<number>(0);
+const priceAutoClicker = ref<number>(5);
 
-    const buyAuto = () => {
-        if (totalClick.value >= priceAutoClicker.value) {
-            totalClick.value -= priceAutoClicker.value;
-            priceAutoClicker.value += 10;
-            autoClicker.value++;
-        }
+let interval: string | number | NodeJS.Timeout | undefined;
+
+const buyAuto = () => {
+    if (totalClick.value >= priceAutoClicker.value) {
+        totalClick.value -= priceAutoClicker.value;
+        priceAutoClicker.value += 10;
+        autoClicker.value++;
     }
+}
 
-    // function autoClick() {
-    //     while(true){
-    //         interval = setInterval(() => {
-    //             totalClick.value += autoClicker.value;
-    //         }, 1000)
-    //     }
-    // }
+onMounted(() => {
+    interval = window.setInterval(() => {
+        totalClick.value += autoClicker.value;
+    }, 1000)
+})
 
-    onMounted(() => {
-        interval = window.setInterval(() => {
-            totalClick.value += autoClicker.value;
-        }, 1000)
-    })
+onUnmounted(() => {
+    clearInterval(interval);
+})
 
-    onUnmounted(() => {
-        clearInterval(interval);
-    })
 </script>
 
 <style scoped>
