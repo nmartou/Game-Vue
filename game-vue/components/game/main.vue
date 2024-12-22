@@ -8,7 +8,7 @@
 
         <div class="soldier">
             <h2>Soldiers</h2>
-            <span>Soldiers: {{ totalSoldier }}</span>
+            <span>Soldiers: {{ totalSoldier }}</span><br>
             <canvas id="game" class="ui"></canvas>
         </div>
     </div>
@@ -33,9 +33,12 @@ const buyAuto = () => {
         priceAutoClicker.value += 10;
         autoClicker.value++;
     }
+    Soldier.soldiers.push(new Soldier());
 }
 
 onMounted(() => {
+    var c = <HTMLCanvasElement> document.getElementById("game");
+    vueCanvas = c.getContext("2d");
     interval = window.setInterval(() => {
         totalClick.value += autoClicker.value;
     }, 1000)
@@ -43,20 +46,56 @@ onMounted(() => {
 
 onUnmounted(() => {
     clearInterval(interval);
-    var c = <HTMLCanvasElement> document.getElementById("game");
-    vueCanvas = c.getContext("2d");
-    console.log(vueCanvas);
 })
 
 class Soldier {
+    static idSolder: number = 0;
+    static soldiers: Array<Soldier> = [];
     positionX: number;
     positionY: number;
+    sizeX: number;
+    sizeY: number;
+    targetPosition: Array<number>;
+    image: any;
+    id: number;
 
-    constructor() {
+    constructor(sizeX: number = 20, sizeY: number = 12) {
+        this.id = Soldier.idSolder;
+        Soldier.idSolder++;
         totalSoldier.value++;
-        this.positionX = 0;
-        this.positionY = 0;
-        vueCanvas.drawImage("/img/knight.png", this.positionX, this.positionY);
+        this.positionX = 30;
+        this.positionY = 30;
+        this.image = new Image();
+        this.image.src = "/img/knight.png";
+        this.sizeX = sizeX;
+        this.sizeY = sizeY;
+        this.targetPosition = [250, 0];
+        this.image.onload = () => {
+            if (Soldier.idSolder > 1) {
+                if(Soldier.soldiers[this.id - 1].targetPosition[0] - sizeX < 0) {
+                    this.targetPosition = [this.targetPosition[0], Soldier.soldiers[this.id - 1].targetPosition[1] + sizeY]; 
+                }
+                else this.targetPosition = [Soldier.soldiers[this.id - 1].targetPosition[0] - sizeX, Soldier.soldiers[this.id - 1].targetPosition[1]]; 
+            }
+            this.draw();
+        }
+        this.image.onerror = () => {
+            console.error("Failed to load image.");
+        };
+    }
+
+    draw() {
+        const animate = () => {
+            vueCanvas.clearRect(this.positionX, this.positionY, this.sizeX, this.sizeY); // Clear the entire canvas
+            vueCanvas.drawImage(this.image, this.positionX, this.positionY, this.sizeX, this.sizeY);
+            // Move the soldier toward the target
+            if (this.positionX !== this.targetPosition[0] || this.positionY !== this.targetPosition[1]) {
+                this.moveToPosition(this.targetPosition[0], this.targetPosition[1]);
+                requestAnimationFrame(animate); // Schedule the next frame
+            }
+        };
+
+        animate();
     }
 
     moveToPosition(x: number, y: number) {
